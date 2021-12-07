@@ -13,7 +13,7 @@ import java.io.InputStreamReader;
 public class HelloClient {
     //ctrl+alt+l 代码对齐
     public static String host = "127.0.0.1";
-    public  static int port = 7878;
+    public  static int port = 8080;
 
     public static void main(String[] args) {
         EventLoopGroup group = new NioEventLoopGroup();
