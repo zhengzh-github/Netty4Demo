@@ -1,6 +1,7 @@
 package example4.idlehandler;
 
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelId;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.timeout.IdleState;
 import io.netty.handler.timeout.IdleStateEvent;
@@ -12,9 +13,11 @@ public class HeartBeatServerHandler extends ChannelInboundHandlerAdapter {
         if(evt instanceof IdleStateEvent)
         {
             IdleStateEvent idleStateEvent = (IdleStateEvent)evt;
-            if(idleStateEvent.state() == IdleState.READER_IDLE)
+            if(idleStateEvent.state() == IdleState.ALL_IDLE)
             {
-                System.out.println("该客户端连接已关闭...");
+                ChannelId id = ctx.channel().id();
+                System.out.println("该客户端连接已关闭..."+id);
+
                 ctx.channel().close();
 
             }

@@ -30,7 +30,7 @@ public class TcpServer {
                 .childHandler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     protected void initChannel(SocketChannel socketChannel) throws Exception {
-                    socketChannel.pipeline().addLast(new IdleStateHandler(5, 0, 0, TimeUnit.SECONDS));
+                    socketChannel.pipeline().addLast(new IdleStateHandler(0, 0, 10, TimeUnit.SECONDS));
                         socketChannel.pipeline().addLast(new StringDecoder());
                         socketChannel.pipeline().addLast(new HeartBeatServerHandler());
                     }
